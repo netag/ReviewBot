@@ -26,6 +26,7 @@ dependencies {
     val kotlinx_version: String by project
     val config4k_version: String by project
     val kmongo_version: String by project
+    val kotest_version: String by project
 
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.github.config4k:config4k:$config4k_version")
@@ -55,6 +56,14 @@ dependencies {
     implementation("org.koin:koin-core-ext:$koin_version")
     implementation("org.koin:koin-ktor:$koin_version")
     testImplementation("org.koin:koin-test:$koin_version")
+
+    // kotest
+    testImplementation("io.kotest:kotest-runner-junit5:$kotest_version")
+    testImplementation("io.kotest:kotest-property:$kotest_version")
+    testImplementation("io.kotest:kotest-extensions-koin:$kotest_version")
+    testImplementation("io.kotest:kotest-assertions-ktor:$kotest_version")
+    testImplementation("io.kotest:kotest-extensions-mockserver:$kotest_version")
+    testImplementation("io.kotest:kotest-assertions-json:$kotest_version")
 }
 
 tasks {

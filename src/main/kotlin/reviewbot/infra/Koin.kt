@@ -6,6 +6,7 @@ import reviewbot.clients.MessengerApi
 import reviewbot.db.DbClient
 import reviewbot.db.PagesDao
 import reviewbot.db.ReviewDao
+import reviewbot.services.TriggerHandler
 import reviewbot.services.WebhookEventHandler
 import reviewbot.services.WebhookVerificationHandler
 
@@ -18,6 +19,7 @@ val koinModules = module {
     single<PagesDao> { PagesDao(get<DbClient>().db) }
     single<ReviewDao> { ReviewDao(get<DbClient>().db) }
 
+    single<TriggerHandler> { TriggerHandler(get(), get(), get()) }
     single<WebhookEventHandler> { WebhookEventHandler(get()) }
     single<WebhookVerificationHandler> { WebhookVerificationHandler(get<Settings>().BotConfig) }
 }

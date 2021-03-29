@@ -38,6 +38,19 @@ data class Review(
     val responses: List<Response> = emptyList()
 ) {
     companion object {
+        operator fun invoke(recipientId: String, pageId: String, trigger: Trigger, messageId: String): Review {
+            return Review(
+                ObjectId.get(),
+                Instant.now(),
+                Instant.now(),
+                Recipient(recipientId),
+                Page(pageId),
+                trigger,
+                messageId,
+                emptyList(),
+            )
+        }
+
         operator fun invoke(recipientId: String, pageId: String, messageId: String, message: Response): Review {
             return Review(
                 ObjectId.get(),

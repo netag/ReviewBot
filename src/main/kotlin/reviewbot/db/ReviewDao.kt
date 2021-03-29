@@ -23,6 +23,8 @@ class ReviewDao(db: CoroutineDatabase) {
         }
     }
 
+    suspend fun insert(review: Review): Either<Throwable, Unit> = Either.catch { collection.insertOne(review) }
+
     suspend fun addResponseToReview(response: Messaging): Either<Throwable, Review?> {
         return Either.catch {
             collection.findOneAndUpdate(

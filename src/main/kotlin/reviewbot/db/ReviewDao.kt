@@ -41,4 +41,18 @@ class ReviewDao(db: CoroutineDatabase) {
             )
         }
     }
+
+    suspend fun findLatest(userId: String, pageId: String, limit: Int?): Either<Throwable, List<Review>> {
+        val filter = and(
+            eq(Review::recipient.name, userId),
+            eq(Review::page.name, pageId),
+        )
+
+        return Either.catch {
+            collection
+                .find(filter)
+                .sort(descending(Review::createdAt))
+                .limit(limit ?: 10).toList()
+        }
+    }
 }

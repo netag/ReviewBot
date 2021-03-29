@@ -15,9 +15,11 @@ repositories {
     mavenCentral()
     maven { url = uri("https://dl.bintray.com/kotlin/kotlinx") }
     maven { url = uri("https://dl.bintray.com/kotlin/ktor") }
+    maven { url = uri("https://dl.bintray.com/arrow-kt/arrow-kt/") }
 }
 
 dependencies {
+    val arrow_version: String by project
     val ktor_version: String by project
     val logback_version: String by project
     val kotlinx_version: String by project
@@ -33,6 +35,16 @@ dependencies {
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("io.ktor:ktor-serialization:$ktor_version")
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
+
+    // ktor client
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("io.ktor:ktor-client-serialization:$ktor_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
+
+    // arrow
+    implementation("io.arrow-kt:arrow-core:$arrow_version")
+    implementation("io.arrow-kt:arrow-syntax:$arrow_version")
 
     // mongo
     implementation("org.litote.kmongo:kmongo-coroutine-serialization:$kmongo_version")

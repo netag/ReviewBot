@@ -1,0 +1,16 @@
+#!/bin/bash
+
+docker-compose up -d db
+./gradlew build
+
+docker build -t reviewbot:0.1
+
+docker run --network reviewbot_default \
+ -e MONGO_URI="mongodb://root:example@db:27017/review_bot?authSource=admin" \
+ -e APP_ID="${APP_ID}" \
+ -e APP_SECRET="${APP_SECRET}" \
+ -e APP_WEBHOOK_VERIFY_TOKEN="${APP_WEBHOOK_VERIFY_TOKEN}" \
+ -p 8080:8080 \
+ --rm \
+ -it \
+ reviewbot:0.1

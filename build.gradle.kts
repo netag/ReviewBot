@@ -22,6 +22,7 @@ dependencies {
     val arrow_version: String by project
     val ktor_version: String by project
     val logback_version: String by project
+    val koin_version: String by project
     val kotlinx_version: String by project
     val config4k_version: String by project
     val kmongo_version: String by project
@@ -48,6 +49,12 @@ dependencies {
 
     // mongo
     implementation("org.litote.kmongo:kmongo-coroutine-serialization:$kmongo_version")
+
+    // koin
+    implementation("org.koin:koin-core:$koin_version")
+    implementation("org.koin:koin-core-ext:$koin_version")
+    implementation("org.koin:koin-ktor:$koin_version")
+    testImplementation("org.koin:koin-test:$koin_version")
 }
 
 tasks {
